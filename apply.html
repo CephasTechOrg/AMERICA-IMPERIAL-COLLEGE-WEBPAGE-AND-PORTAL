@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Now - American Imperial College</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #1a3a5f;
+            --primary-light: #2a4a7f;
+            --primary-dark: #0a2a4f;
+            --secondary: #d4af37;
+            --secondary-light: #e4bf47;
+            --accent: #8b0000;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background-color: #f5f7fa;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .application-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px 0;
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .application-title {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        .application-title h1 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+
+        .application-title p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Application Container */
+        .application-container {
+            display: flex;
+            min-height: calc(100vh - 100px);
+            margin-top: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* Progress Section */
+        .progress-section {
+            flex: 0 0 300px;
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-right: 30px;
+            height: fit-content;
+            position: sticky;
+            top: 30px;
+        }
+
+        .progress-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+
+        .progress-steps {
+            list-style: none;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 10px 15px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .progress-step:hover {
+            background: rgba(26, 58, 95, 0.05);
+        }
+
+        .progress-step.active {
+            background: rgba(26, 58, 95, 0.1);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .step-number {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: 600;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .progress-step.active .step-number {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .progress-step.completed .step-number {
+            background: var(--success);
+            color: white;
+        }
+
+        .step-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .progress-step.active .step-info h3 {
+            color: var(--primary);
+        }
+
+        .step-info p {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        /* Form Section */
+        .form-section {
+            flex: 1;
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-title {
+            color: var(--primary);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--light);
+        }
+
+        .form-step {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .required::after {
+            content: " *";
+            color: var(--danger);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 58, 95, 0.1);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .word-count {
+            text-align: right;
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+
+        .word-count.warning {
+            color: var(--warning);
+        }
+
+        .word-count.error {
+            color: var(--danger);
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload-input {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .file-upload-label:hover {
+            border-color: var(--primary);
+            background: rgba(26, 58, 95, 0.05);
+        }
+
+        .file-upload-label i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-right: 10px;
+        }
+
+        .uploaded-files {
+            margin-top: 15px;
+        }
+
+        .uploaded-file {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .uploaded-file i {
+            color: var(--success);
+            margin-right: 10px;
+        }
+
+        .uploaded-file .file-name {
+            flex: 1;
+        }
+
+        .uploaded-file .file-remove {
+            color: var(--danger);
+            cursor: pointer;
+        }
+
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            box-shadow: none;
+        }
+
+        .btn-outline::before {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+        }
+
+        .btn-outline:hover {
+            color: var(--primary);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            color: #666;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .btn:disabled:hover {
+            transform: none;
+            color: #666;
+        }
+
+        .btn:disabled::before {
+            display: none;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        /* Review Section */
+        .review-section {
+            background: #f9f9f9;
+            border-radius: var(--radius);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .review-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .review-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .review-item h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .review-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .review-detail {
+            margin-bottom: 10px;
+        }
+
+        .review-detail label {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .review-detail p {
+            color: var(--gray);
+        }
+
+        /* Confirmation Section */
+        .confirmation-section {
+            text-align: center;
+            padding: 50px 30px;
+        }
+
+        .confirmation-icon {
+            font-size: 5rem;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+
+        .confirmation-section h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .confirmation-section p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .application-container {
+                flex-direction: column;
+            }
+            
+            .progress-section {
+                flex: none;
+                margin-right: 0;
+                margin-bottom: 30px;
+                position: static;
+            }
+            
+            .progress-steps {
+                display: flex;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .progress-step {
+                flex: 0 0 auto;
+                margin-right: 15px;
+                margin-bottom: 0;
+                min-width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .application-title {
+                margin: 15px 0;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .form-section {
+                padding: 25px;
+            }
+            
+            .form-navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .application-title h1 {
+                font-size: 1.8rem;
+            }
+            
+            .form-section {
+                padding: 20px;
+            }
+            
+            .progress-step {
+                min-width: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Application Header -->
+    <header class="application-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html"><img src="https://i.imgur.com/YX03GwU.png" alt="American Imperial College Logo"></a>
+            </div>
+            <div class="application-title">
+                <h1>Application Portal</h1>
+                <p>Complete your application to American Imperial College</p>
+            </div>
+            <div class="application-help">
+                <a href="contact.html" class="btn btn-outline" style="color: white; border-color: white;">
+                    <i class="fas fa-question-circle"></i> Help
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Application Container -->
+    <div class="container application-container">
+        <!-- Progress Section -->
+        <section class="progress-section">
+            <div class="progress-title">
+                <h2>Application Progress</h2>
+            </div>
+            <ul class="progress-steps">
+                <li class="progress-step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-info">
+                        <h3>Personal Information</h3>
+                        <p>Your basic details</p>
+                    </div>
+                </li>
+                <li class="progress-step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-info">
+                        <h3>Contact Details</h3>
+                        <p>How to reach you</p>
+                    </div>
+                </li>
+                <li class="progress-step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-info">
+                        <h3>Previous Education</h3>
+                        <p>Your academic history</p>
+                    </div>
+                </li>
+                <li class="progress-step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-info">
+                        <h3>Family Information</h3>
+                        <p>About your family</p>
+                    </div>
+                </li>
+                <li class="progress-step" data-step="5">
+                    <div class="step-number">5</div>
+                    <div class="step-info">
+                        <h3>Personal Essay</h3>
+                        <p>Tell us your story</p>
+                    </div>
+                </li>
+                <li class="progress-step" data-step="6">
+                    <div class="step-number">6</div>
+                    <div class="step-info">
+                        <h3>Document Upload</h3>
+                        <p>Required documents</p>
+                    </div>
+                </li>
+                <li class="progress-step" data-step="7">
+                    <div class="step-number">7</div>
+                    <div class="step-info">
+                        <h3>Review & Submit</h3>
+                        <p>Finalize application</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Form Section -->
+        <section class="form-section">
+            <!-- Step 1: Personal Information -->
+            <div class="form-step active" id="step-1">
+                <h2 class="form-title">Personal Information</h2>
+                <p>Please provide your personal details as they appear on official documents.</p>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName" class="required">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" class="required">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="middleName">Middle Name</label>
+                        <input type="text" id="middleName" name="middleName">
+                    </div>
+                    <div class="form-group">
+                        <label for="preferredName">Preferred Name (if different)</label>
+                        <input type="text" id="preferredName" name="preferredName">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dateOfBirth" class="required">Date of Birth</label>
+                        <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender" class="required">Gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="preferNotToSay">Prefer not to say</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nationality" class="required">Nationality</label>
+                        <input type="text" id="nationality" name="nationality" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="countryOfBirth" class="required">Country of Birth</label>
+                        <input type="text" id="countryOfBirth" name="countryOfBirth" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="identificationNumber" class="required">National ID/Passport Number</label>
+                    <input type="text" id="identificationNumber" name="identificationNumber" required>
+                </div>
+                
+                <div class="form-navigation">
+                    <div></div> <!-- Empty div for spacing -->
+                    <button class="btn next-step" data-next="2">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 2: Contact Information -->
+            <div class="form-step" id="step-2">
+                <h2 class="form-title">Contact Information</h2>
+                <p>Please provide your contact details so we can reach you regarding your application.</p>
+                
+                <div class="form-group">
+                    <label for="email" class="required">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone" class="required">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="alternatePhone">Alternate Phone Number</label>
+                        <input type="tel" id="alternatePhone" name="alternatePhone">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address" class="required">Street Address</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city" class="required">City</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state" class="required">State/Region</label>
+                        <input type="text" id="state" name="state" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="postalCode" class="required">Postal Code</label>
+                        <input type="text" id="postalCode" name="postalCode" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="country" class="required">Country</label>
+                        <input type="text" id="country" name="country" required>
+                    </div>
+                </div>
+                
+                <div class="form-navigation">
+                    <button class="btn btn-outline prev-step" data-prev="1"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button class="btn next-step" data-next="3">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 3: Previous Education -->
+            <div class="form-step" id="step-3">
+                <h2 class="form-title">Previous Education</h2>
+                <p>Please provide information about your previous schools and academic performance.</p>
+                
+                <div class="form-group">
+                    <label for="currentSchool" class="required">Current/Most Recent School</label>
+                    <input type="text" id="currentSchool" name="currentSchool" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="schoolCity" class="required">School City</label>
+                        <input type="text" id="schoolCity" name="schoolCity" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="schoolCountry" class="required">School Country</label>
+                        <input type="text" id="schoolCountry" name="schoolCountry" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="startDate" class="required">Start Date</label>
+                        <input type="month" id="startDate" name="startDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate" class="required">End Date (or Expected)</label>
+                        <input type="month" id="endDate" name="endDate" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="curriculum" class="required">Curriculum Followed</label>
+                    <select id="curriculum" name="curriculum" required>
+                        <option value="">Select Curriculum</option>
+                        <option value="ghanaian">Ghanaian Curriculum</option>
+                        <option value="british">British Curriculum</option>
+                        <option value="american">American Curriculum</option>
+                        <option value="ib">International Baccalaureate</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="academicAchievements">Academic Achievements & Awards</label>
+                    <textarea id="academicAchievements" name="academicAchievements" placeholder="List any academic achievements, awards, or honors you have received"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="extracurricular">Extracurricular Activities</label>
+                    <textarea id="extracurricular" name="extracurricular" placeholder="Describe your involvement in sports, clubs, volunteer work, or other activities"></textarea>
+                </div>
+                
+                <div class="form-navigation">
+                    <button class="btn btn-outline prev-step" data-prev="2"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button class="btn next-step" data-next="4">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 4: Family Information -->
+            <div class="form-step" id="step-4">
+                <h2 class="form-title">Family Information</h2>
+                <p>Please provide information about your family background.</p>
+                
+                <div class="form-group">
+                    <h3>Parent/Guardian 1</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parent1Name" class="required">Full Name</label>
+                            <input type="text" id="parent1Name" name="parent1Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parent1Relationship" class="required">Relationship</label>
+                            <select id="parent1Relationship" name="parent1Relationship" required>
+                                <option value="">Select Relationship</option>
+                                <option value="mother">Mother</option>
+                                <option value="father">Father</option>
+                                <option value="guardian">Guardian</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parent1Email">Email Address</label>
+                            <input type="email" id="parent1Email" name="parent1Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="parent1Phone" class="required">Phone Number</label>
+                            <input type="tel" id="parent1Phone" name="parent1Phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="parent1Occupation">Occupation</label>
+                        <input type="text" id="parent1Occupation" name="parent1Occupation">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <h3>Parent/Guardian 2</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parent2Name">Full Name</label>
+                            <input type="text" id="parent2Name" name="parent2Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="parent2Relationship">Relationship</label>
+                            <select id="parent2Relationship" name="parent2Relationship">
+                                <option value="">Select Relationship</option>
+                                <option value="mother">Mother</option>
+                                <option value="father">Father</option>
+                                <option value="guardian">Guardian</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parent2Email">Email Address</label>
+                            <input type="email" id="parent2Email" name="parent2Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="parent2Phone">Phone Number</label>
+                            <input type="tel" id="parent2Phone" name="parent2Phone">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="parent2Occupation">Occupation</label>
+                        <input type="text" id="parent2Occupation" name="parent2Occupation">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="siblings">Siblings Information</label>
+                    <textarea id="siblings" name="siblings" placeholder="List any siblings, their ages, and schools they attend"></textarea>
+                </div>
+                
+                <div class="form-navigation">
+                    <button class="btn btn-outline prev-step" data-prev="3"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button class="btn next-step" data-next="5">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 5: Personal Essay -->
+            <div class="form-step" id="step-5">
+                <h2 class="form-title">Personal Essay</h2>
+                <p>Please write a personal essay (450-500 words) that tells us about yourself, your interests, and why you want to attend American Imperial College.</p>
+                
+                <div class="form-group">
+                    <label for="essay" class="required">Personal Essay</label>
+                    <textarea id="essay" name="essay" placeholder="Write your essay here (450-500 words)" required></textarea>
+                    <div class="word-count" id="wordCount">Words: 0/450</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="careerGoals">Career Goals & Aspirations</label>
+                    <textarea id="careerGoals" name="careerGoals" placeholder="Describe your career goals and how American Imperial College can help you achieve them"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="specialTalents">Special Talents or Skills</label>
+                    <textarea id="specialTalents" name="specialTalents" placeholder="Describe any special talents, skills, or unique experiences you have"></textarea>
+                </div>
+                
+                <div class="form-navigation">
+                    <button class="btn btn-outline prev-step" data-prev="4"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button class="btn next-step" data-next="6">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 6: Document Upload -->
+            <div class="form-step" id="step-6">
+                <h2 class="form-title">Document Upload</h2>
+                <p>Please upload the required documents for your application. All documents should be in PDF, JPG, or PNG format.</p>
+                
+                <div class="form-group">
+                    <label for="transcript" class="required">Academic Transcripts</label>
+                    <div class="file-upload">
+                        <input type="file" id="transcript" class="file-upload-input" accept=".pdf,.jpg,.jpeg,.png" required>
+                        <label for="transcript" class="file-upload-label">
+                            <i class="fas fa-file-upload"></i>
+                            <span>Click to upload your academic transcripts</span>
+                        </label>
+                    </div>
+                    <div class="uploaded-files" id="transcript-files"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="certificates" class="required">Certificates & Diplomas</label>
+                    <div class="file-upload">
+                        <input type="file" id="certificates" class="file-upload-input" accept=".pdf,.jpg,.jpeg,.png" required>
+                        <label for="certificates" class="file-upload-label">
+                            <i class="fas fa-file-upload"></i>
+                            <span>Click to upload your certificates/diplomas</span>
+                        </label>
+                    </div>
+                    <div class="uploaded-files" id="certificates-files"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="idDocument" class="required">ID Document (Passport/National ID)</label>
+                    <div class="file-upload">
+                        <input type="file" id="idDocument" class="file-upload-input" accept=".pdf,.jpg,.jpeg,.png" required>
+                        <label for="idDocument" class="file-upload-label">
+                            <i class="fas fa-file-upload"></i>
+                            <span>Click to upload your ID document</span>
+                        </label>
+                    </div>
+                    <div class="uploaded-files" id="idDocument-files"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="recommendation">Recommendation Letters (Optional)</label>
+                    <div class="file-upload">
+                        <input type="file" id="recommendation" class="file-upload-input" accept=".pdf,.jpg,.jpeg,.png">
+                        <label for="recommendation" class="file-upload-label">
+                            <i class="fas fa-file-upload"></i>
+                            <span>Click to upload recommendation letters</span>
+                        </label>
+                    </div>
+                    <div class="uploaded-files" id="recommendation-files"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="otherDocuments">Other Supporting Documents (Optional)</label>
+                    <div class="file-upload">
+                        <input type="file" id="otherDocuments" class="file-upload-input" accept=".pdf,.jpg,.jpeg,.png">
+                        <label for="otherDocuments" class="file-upload-label">
+                            <i class="fas fa-file-upload"></i>
+                            <span>Click to upload other supporting documents</span>
+                        </label>
+                    </div>
+                    <div class="uploaded-files" id="otherDocuments-files"></div>
+                </div>
+                
+                <div class="form-navigation">
+                    <button class="btn btn-outline prev-step" data-prev="5"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button class="btn next-step" data-next="7">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 7: Review & Submit -->
+            <div class="form-step" id="step-7">
+                <h2 class="form-title">Review & Submit</h2>
+                <p>Please review all the information you have provided before submitting your application.</p>
+                
+                <div class="review-section">
+                    <div class="review-item">
+                        <h3>Personal Information</h3>
+                        <div class="review-details" id="review-personal">
+                            <!-- Filled by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="review-item">
+                        <h3>Contact Information</h3>
+                        <div class="review-details" id="review-contact">
+                            <!-- Filled by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="review-item">
+                        <h3>Previous Education</h3>
+                        <div class="review-details" id="review-education">
+                            <!-- Filled by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="review-item">
+                        <h3>Family Information</h3>
+                        <div class="review-details" id="review-family">
+                            <!-- Filled by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="review-item">
+                        <h3>Personal Essay</h3>
+                        <div class="review-details" id="review-essay">
+                            <!-- Filled by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="review-item">
+                        <h3>Uploaded Documents</h3>
+                        <div class="review-details" id="review-documents">
+                            <!-- Filled by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-check">
+                        <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                        <label for="agreeTerms" class="required">I certify that all information provided in this application is true and complete to the best of my knowledge.</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-check">
+                        <input type="checkbox" id="agreePolicy" name="agreePolicy" required>
+                        <label for="agreePolicy" class="required">I agree to the <a href="#">Privacy Policy</a> and <a href="#">Terms of Use</a> of American Imperial College.</label>
+                    </div>
+                </div>
+                
+                <div class="form-navigation">
+                    <button class="btn btn-outline prev-step" data-prev="6"><i class="fas fa-arrow-left"></i> Previous</button>
+                    <button class="btn" id="submit-application" disabled>Submit Application <i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+
+            <!-- Confirmation Section (Hidden initially) -->
+            <div class="form-step" id="confirmation">
+                <div class="confirmation-section">
+                    <div class="confirmation-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2>Application Submitted Successfully!</h2>
+                    <p>Thank you for applying to American Imperial College. We have received your application and will review it carefully. You will receive a confirmation email shortly with your application ID and next steps.</p>
+                    <p>If you have any questions, please contact our admissions office at <strong>admissions@americanimperial.edu.gh</strong> or call <strong>+233 123 456 789</strong>.</p>
+                    <div class="form-navigation">
+                        <a href="index.html" class="btn"><i class="fas fa-home"></i> Return to Homepage</a>
+                        <a href="admission.html" class="btn btn-outline">Admissions Information</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Application Form Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Step Navigation
+            const steps = document.querySelectorAll('.form-step');
+            const progressSteps = document.querySelectorAll('.progress-step');
+            const nextButtons = document.querySelectorAll('.next-step');
+            const prevButtons = document.querySelectorAll('.prev-step');
+            const submitButton = document.getElementById('submit-application');
+            const agreeTerms = document.getElementById('agreeTerms');
+            const agreePolicy = document.getElementById('agreePolicy');
+            const essayTextarea = document.getElementById('essay');
+            const wordCount = document.getElementById('wordCount');
+            const fileInputs = document.querySelectorAll('.file-upload-input');
+            
+            let currentStep = 1;
+            
+            // Initialize the form
+            updateProgress();
+            
+            // Next button functionality
+            nextButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const nextStep = parseInt(this.getAttribute('data-next'));
+                    if (validateStep(currentStep)) {
+                        navigateToStep(nextStep);
+                    }
+                });
+            });
+            
+            // Previous button functionality
+            prevButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const prevStep = parseInt(this.getAttribute('data-prev'));
+                    navigateToStep(prevStep);
+                });
+            });
+            
+            // Progress step click functionality
+            progressSteps.forEach(step => {
+                step.addEventListener('click', function() {
+                    const stepNumber = parseInt(this.getAttribute('data-step'));
+                    if (stepNumber < currentStep) {
+                        navigateToStep(stepNumber);
+                    }
+                });
+            });
+            
+            // Word count for essay
+            essayTextarea.addEventListener('input', function() {
+                const words = this.value.trim().split(/\s+/).filter(word => word.length > 0);
+                const wordCountValue = words.length;
+                
+                wordCount.textContent = `Words: ${wordCountValue}/450`;
+                
+                if (wordCountValue < 400) {
+                    wordCount.className = 'word-count warning';
+                } else if (wordCountValue >= 450) {
+                    wordCount.className = 'word-count error';
+                } else {
+                    wordCount.className = 'word-count';
+                }
+            });
+            
+            // File upload functionality
+            fileInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    const files = this.files;
+                    const fileContainer = document.getElementById(`${this.id}-files`);
+                    
+                    fileContainer.innerHTML = '';
+                    
+                    if (files.length > 0) {
+                        for (let i = 0; i < files.length; i++) {
+                            const file = files[i];
+                            const fileElement = document.createElement('div');
+                            fileElement.className = 'uploaded-file';
+                            fileElement.innerHTML = `
+                                <i class="fas fa-file"></i>
+                                <div class="file-name">${file.name}</div>
+                                <div class="file-remove" data-file-index="${i}" data-input-id="${this.id}">
+                                    <i class="fas fa-times"></i>
+                                </div>
+                            `;
+                            fileContainer.appendChild(fileElement);
+                        }
+                    }
+                });
+            });
+            
+            // File removal functionality
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('file-remove') || e.target.parentElement.classList.contains('file-remove')) {
+                    const target = e.target.classList.contains('file-remove') ? e.target : e.target.parentElement;
+                    const fileIndex = parseInt(target.getAttribute('data-file-index'));
+                    const inputId = target.getAttribute('data-input-id');
+                    const input = document.getElementById(inputId);
+                    
+                    // Create a new FileList without the removed file
+                    const dt = new DataTransfer();
+                    for (let i = 0; i < input.files.length; i++) {
+                        if (i !== fileIndex) {
+                            dt.items.add(input.files[i]);
+                        }
+                    }
+                    input.files = dt.files;
+                    
+                    // Trigger change event to update UI
+                    const event = new Event('change');
+                    input.dispatchEvent(event);
+                }
+            });
+            
+            // Terms agreement validation
+            agreeTerms.addEventListener('change', updateSubmitButton);
+            agreePolicy.addEventListener('change', updateSubmitButton);
+            
+            // Submit application
+            submitButton.addEventListener('click', function() {
+                if (validateStep(7) && agreeTerms.checked && agreePolicy.checked) {
+                    // In a real application, this would send data to a server
+                    // For now, we'll just show the confirmation
+                    document.getElementById('step-7').classList.remove('active');
+                    document.getElementById('confirmation').classList.add('active');
+                    
+                    // Update progress to show completion
+                    progressSteps.forEach(step => {
+                        step.classList.add('completed');
+                    });
+                }
+            });
+            
+            // Navigation function
+            function navigateToStep(step) {
+                // Hide current step
+                document.getElementById(`step-${currentStep}`).classList.remove('active');
+                
+                // Show new step
+                document.getElementById(`step-${step}`).classList.add('active');
+                
+                // Update current step
+                currentStep = step;
+                
+                // Update progress indicator
+                updateProgress();
+                
+                // Scroll to top of form
+                document.querySelector('.form-section').scrollTop = 0;
+            }
+            
+            // Update progress indicator
+            function updateProgress() {
+                progressSteps.forEach(step => {
+                    const stepNumber = parseInt(step.getAttribute('data-step'));
+                    
+                    step.classList.remove('active', 'completed');
+                    
+                    if (stepNumber === currentStep) {
+                        step.classList.add('active');
+                    } else if (stepNumber < currentStep) {
+                        step.classList.add('completed');
+                    }
+                });
+                
+                // Update review section if we're on step 7
+                if (currentStep === 7) {
+                    updateReviewSection();
+                }
+            }
+            
+            // Validate current step
+            function validateStep(step) {
+                const currentStepElement = document.getElementById(`step-${step}`);
+                const requiredInputs = currentStepElement.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredInputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        isValid = false;
+                        input.style.borderColor = 'var(--danger)';
+                    } else {
+                        input.style.borderColor = '#ddd';
+                    }
+                });
+                
+                // Special validation for essay word count
+                if (step === 5) {
+                    const words = essayTextarea.value.trim().split(/\s+/).filter(word => word.length > 0);
+                    if (words.length < 450) {
+                        alert('Your essay must be at least 450 words. Currently: ' + words.length);
+                        isValid = false;
+                    }
+                }
+                
+                if (!isValid) {
+                    alert('Please fill in all required fields correctly before proceeding.');
+                }
+                
+                return isValid;
+            }
+            
+            // Update submit button state based on terms agreement
+            function updateSubmitButton() {
+                submitButton.disabled = !(agreeTerms.checked && agreePolicy.checked);
+            }
+            
+            // Update review section with form data
+            function updateReviewSection() {
+                // Personal Information
+                document.getElementById('review-personal').innerHTML = `
+                    <div class="review-detail">
+                        <label>Full Name</label>
+                        <p>${document.getElementById('firstName').value} ${document.getElementById('lastName').value}</p>
+                    </div>
+                    <div class="review-detail">
+                        <label>Date of Birth</label>
+                        <p>${document.getElementById('dateOfBirth').value}</p>
+                    </div>
+                    <div class="review-detail">
+                        <label>Gender</label>
+                        <p>${document.getElementById('gender').options[document.getElementById('gender').selectedIndex].text}</p>
+                    </div>
+                    <div class="review-detail">
+                        <label>Nationality</label>
+                        <p>${document.getElementById('nationality').value}</p>
+                    </div>
+                `;
+                
+                // Contact Information
+                document.getElementById('review-contact').innerHTML = `
+                    <div class="review-detail">
+                        <label>Email</label>
+                        <p>${document.getElementById('email').value}</p>
+                    </div>
+                    <div class="review-detail">
+                        <label>Phone</label>
+                        <p>${document.getElementById('phone').value}</p>
+                    </div>
+                    <div class="review-detail">
+                        <label>Address</label>
+                        <p>${document.getElementById('address').value}, ${document.getElementById('city').value}, ${document.getElementById('country').value}</p>
+                    </div>
+                `;
+                
+                // Education Information
+                document.getElementById('review-education').innerHTML = `
+                    <div class="review-detail">
+                        <label>Current School</label>
+                        <p>${document.getElementById('currentSchool').value}</p>
+                    </div>
+                    <div class="review-detail">
+                        <label>Curriculum</label>
+                        <p>${document.getElementById('curriculum').options[document.getElementById('curriculum').selectedIndex].text}</p>
+                    </div>
+                    <div class="review-detail">
+                        <label>Attendance Period</label>
+                        <p>${document.getElementById('startDate').value} to ${document.getElementById('endDate').value}</p>
+                    </div>
+                `;
+                
+                // Family Information
+                let familyHTML = `
+                    <div class="review-detail">
+                        <label>Parent/Guardian 1</label>
+                        <p>${document.getElementById('parent1Name').value} (${document.getElementById('parent1Relationship').options[document.getElementById('parent1Relationship').selectedIndex].text})</p>
+                    </div>
+                `;
+                
+                if (document.getElementById('parent2Name').value) {
+                    familyHTML += `
+                        <div class="review-detail">
+                            <label>Parent/Guardian 2</label>
+                            <p>${document.getElementById('parent2Name').value} (${document.getElementById('parent2Relationship').options[document.getElementById('parent2Relationship').selectedIndex].text})</p>
+                        </div>
+                    `;
+                }
+                
+                document.getElementById('review-family').innerHTML = familyHTML;
+                
+                // Essay Information
+                const words = essayTextarea.value.trim().split(/\s+/).filter(word => word.length > 0);
+                document.getElementById('review-essay').innerHTML = `
+                    <div class="review-detail">
+                        <label>Essay Word Count</label>
+                        <p>${words.length} words</p>
+                    </div>
+                `;
+                
+                // Document Information
+                let documentsHTML = '';
+                fileInputs.forEach(input => {
+                    if (input.files.length > 0) {
+                        const label = input.previousElementSibling.textContent.trim();
+                        documentsHTML += `
+                            <div class="review-detail">
+                                <label>${label}</label>
+                                <p>${input.files.length} file(s) uploaded</p>
+                            </div>
+                        `;
+                    }
+                });
+                
+                document.getElementById('review-documents').innerHTML = documentsHTML || '<p>No documents uploaded</p>';
+            }
+        });
+    </script>
+</body>
+</html>
