@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - American Imperial College</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary: #1a3a5f;
+            --primary-light: #2a4a7f;
+            --primary-dark: #0a2a4f;
+            --secondary: #d4af37;
+            --secondary-light: #e4bf47;
+            --accent: #8b0000;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            box-shadow: none;
+        }
+
+        .btn-outline::before {
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-light));
+        }
+
+        .btn-outline:hover {
+            color: var(--primary);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            transition: var(--transition);
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+            margin: 0 10px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            font-weight: 500;
+            transition: var(--transition);
+            border-radius: 5px;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            background: white;
+            min-width: 220px;
+            box-shadow: var(--shadow);
+            border-radius: var(--radius);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: var(--transition);
+            z-index: 1000;
+            padding: 10px 0;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(5px);
+        }
+
+        .dropdown-link {
+            color: var(--dark);
+            padding: 12px 20px;
+            display: block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .dropdown-link:hover {
+            background: rgba(26, 58, 95, 0.05);
+            color: var(--primary);
+            padding-left: 25px;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        /* About Hero Section */
+        .about-hero {
+            position: relative;
+            height: 60vh;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(26, 58, 95, 0.85), rgba(10, 42, 79, 0.9)), 
+                        url('https://cdn.pixabay.com/photo/2021/10/11/04/08/university-6699377_1280.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+        }
+
+        .about-hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .about-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+        }
+
+        /* About Content Section */
+        .about-content {
+            background: #f8f9fa;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .about-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .about-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .about-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* Mission & Vision */
+        .mission-vision {
+            background: white;
+        }
+
+        .mv-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .mv-card {
+            background: #f8f9fa;
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mv-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--secondary), var(--accent));
+        }
+
+        .mv-card h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        /* Founders Section */
+        .founders {
+            background: #f8f9fa;
+        }
+
+        .founders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .founder-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .founder-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .founder-img {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .founder-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .founder-card:hover .founder-img img {
+            transform: scale(1.05);
+        }
+
+        .founder-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .founder-info h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .founder-info .title {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* History Section */
+        .history {
+            background: white;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--secondary);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 50%;
+            padding: 0 40px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: var(--secondary);
+            border-radius: 50%;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -50px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -50px;
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .timeline-content .year {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 80px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo img {
+            height: 80px;
+            margin-bottom: 20px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-logo p {
+            margin-bottom: 25px;
+            opacity: 0.8;
+        }
+
+        .footer-links h3, .footer-contact h3 {
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .footer-links h3::after, .footer-contact h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-contact p {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            opacity: 0.8;
+        }
+
+        .footer-contact i {
+            margin-right: 15px;
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+                transition: left 0.3s ease;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background-color: rgba(0, 0, 0, 0.1);
+                width: 100%;
+                margin-top: 10px;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 20px;
+                left: 0 !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-hero {
+                height: 50vh;
+                min-height: 400px;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-hero p {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+            }
+        }
+    
+</style>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html"><img src="https://i.imgur.com/YX03GwU.png" alt="American Imperial College Logo"></a>
+            </div>
+            
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item">
+                    <a href="academics.html" class="nav-link">Academics <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="elementary.html" class="dropdown-link">Elementary School</a></li>
+                        <li><a href="middle.html" class="dropdown-link">Middle School</a></li>
+                        <li><a href="highschool.html" class="dropdown-link">High School</a></li>
+                        <li><a href="curriculum.html" class="dropdown-link">Curriculum</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="admission.html" class="nav-link">Admission</a></li>
+                <li class="nav-item"><a href="campus-life.html" class="nav-link">Campus Life</a></li>
+                <li class="nav-item"><a href="facilities.html" class="nav-link">Facilities</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="apply.html" class="nav-link btn">Apply Now</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h1>About American Imperial College</h1>
+            <p>Excellence in Education, Leadership for Life</p>
+            <a href="#about-content" class="btn">Discover Our Story</a>
+        </div>
+    </section>
+
+    <!-- About Content Section -->
+    <section class="about-content" id="about-content">
+        <div class="container">
+            <div class="section-title">
+                <h2>Who We Are</h2>
+                <p>American Imperial College is a premier educational institution dedicated to nurturing future leaders through a holistic and transformative learning experience.</p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Academic Excellence</h3>
+                    <p>We provide a rigorous academic curriculum that challenges students to reach their full potential while fostering critical thinking and problem-solving skills.</p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Global Community</h3>
+                    <p>Our diverse community brings together students from various backgrounds, creating a rich multicultural environment that prepares students for global citizenship.</p>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Character Development</h3>
+                    <p>Beyond academics, we focus on developing strong character, ethical values, and leadership qualities in every student.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="mission-vision">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Mission & Vision</h2>
+                <p>Guiding principles that shape our educational philosophy and approach</p>
+            </div>
+            
+            <div class="mv-container">
+                <div class="mv-card">
+                    <h3>Our Mission</h3>
+                    <p>To provide a transformative educational experience that empowers students to achieve academic excellence, develop strong character, and become responsible global citizens. We are committed to nurturing each student's unique talents and preparing them for success in higher education and beyond.</p>
+                </div>
+                
+                <div class="mv-card">
+                    <h3>Our Vision</h3>
+                    <p>To be recognized as a leading educational institution in Ghana and beyond, known for innovation, academic rigor, and the development of future leaders who will make positive contributions to their communities and the world at large.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founders Section -->
+    <section class="founders">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Founders</h2>
+                <p>Meet the visionary leaders who established American Imperial College</p>
+            </div>
+            
+            <div class="founders-grid">
+                <div class="founder-card">
+                    <div class="founder-img">
+                        <img src="https://i.imgur.com/JLbTuvk.jpeg" alt="Kwao Albert">
+                    </div>
+                    <div class="founder-info">
+                        <h3>Kwao Albert</h3>
+                        <div class="title">Co-Founder & Chairman</div>
+                        <p>With over 20 years of experience in educational leadership, Kwao Albert envisioned creating an institution that would redefine premium education in Ghana.</p>
+                    </div>
+                </div>
+                
+                <div class="founder-card">
+                    <div class="founder-img">
+                        <img src="https://i.imgur.com/2NdrXgk.jpeg" alt="Godfred Acheampong">
+                    </div>
+                    <div class="founder-info">
+                        <h3>Godfred Acheampong</h3>
+                        <div class="title">Co-Founder & Director of Academics</div>
+                        <p>Godfred brings extensive expertise in curriculum development and international education standards, ensuring our academic programs meet global benchmarks.</p>
+                    </div>
+                </div>
+                
+                <div class="founder-card">
+                    <div class="founder-img">
+                        <img src="https://i.imgur.com/FUPjawn.jpeg" alt="Cephas Osei-Bonsu">
+                    </div>
+                    <div class="founder-info">
+                        <h3>Cephas Osei-Bonsu</h3>
+                        <div class="title">Co-Founder & Operations Director</div>
+                        <p>Cephas oversees the strategic development and operational excellence of the college, ensuring our facilities and services match our educational vision.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="history">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our History</h2>
+                <p>Journey through the milestones that shaped American Imperial College</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="year">2018</div>
+                        <h3>The Vision</h3>
+                        <p>The concept of American Imperial College was conceived by three visionary educators who identified the need for a premium educational institution in Ghana.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="year">2019</div>
+                        <h3>Planning Phase</h3>
+                        <p>Extensive research and planning began, with focus on developing a unique curriculum that combines international standards with local relevance.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="year">2020</div>
+                        <h3>Campus Development</h3>
+                        <p>Construction commenced on our state-of-the-art campus, designed to provide an optimal learning environment with modern facilities.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="year">2021</div>
+                        <h3>Faculty Recruitment</h3>
+                        <p>We assembled a team of highly qualified educators from Ghana and internationally, ensuring diverse perspectives and expertise.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="year">2022</div>
+                        <h3>Inaugural Year</h3>
+                        <p>American Imperial College opened its doors to the first cohort of students, marking the beginning of our educational journey.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="year">2023</div>
+                        <h3>Expansion</h3>
+                        <p>We expanded our programs to include all levels from elementary to high school, completing our comprehensive educational offering.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="https://cdn.pixabay.com/photo/2021/10/11/04/08/university-6699377_1280.jpg" alt="American Imperial College Logo">
+                <p>Excellence in Education, Leadership for Life. American Imperial College offers premium education in Ghana from basic level to high school.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="academics.html">Academics</a></li>
+                    <li><a href="admission.html">Admission</a></li>
+                    <li><a href="campus-life.html">Campus Life</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Education Avenue, Accra, Ghana</p>
+                <p><i class="fas fa-phone"></i> +233 123 456 789</p>
+                <p><i class="fas fa-envelope"></i> info@americanimperial.edu.gh</p>
+                <p><i class="fas fa-clock"></i> Mon - Fri: 8:00 AM - 5:00 PM</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2023 American Imperial College. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if(window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+        
+        // Add fade-in animation to elements on scroll
+        const fadeElements = document.querySelectorAll('.about-card, .mv-card, .founder-card, .timeline-content');
+        
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            fadeObserver.observe(el);
+        });
+    </script>
+</body>
+</html>
