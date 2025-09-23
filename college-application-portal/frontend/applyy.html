@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Application Form</title>
+</head>
+<body>
+  <h1>College Application</h1>
+  <form id="applicationForm" enctype="multipart/form-data">
+    <label>First Name:</label>
+    <input type="text" name="first_name" required><br>
+
+    <label>Last Name:</label>
+    <input type="text" name="last_name" required><br>
+
+    <label>Email:</label>
+    <input type="email" name="email" required><br>
+
+    <label>Phone:</label>
+    <input type="text" name="phone" required><br>
+
+    <label>Essay:</label>
+    <textarea name="essay" required></textarea><br>
+
+    <label>Upload Files:</label>
+    <input type="file" name="files" multiple><br><br>
+
+    <button type="submit">Submit Application</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("applicationForm");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      const response = await fetch("http://127.0.0.1:8000/applications/", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        alert("Application submitted successfully!");
+      } else {
+        alert("Error submitting application.");
+      }
+    });
+  </script>
+</body>
+</html>
