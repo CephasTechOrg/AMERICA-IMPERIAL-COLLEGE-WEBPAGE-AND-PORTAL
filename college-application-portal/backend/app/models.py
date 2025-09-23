@@ -2,13 +2,14 @@ from sqlalchemy import Column, Integer, String, Text, DateTime
 from .database import Base
 from datetime import datetime
 
-class Applicant(Base):
-    __tablename__ = "applicants"
+class Application(Base):
+    __tablename__ = "applications"
     id = Column(Integer, primary_key=True, index=True)
-    first_name = Column(String(100))
-    last_name = Column(String(100))
-    email = Column(String(120), unique=True)
-    phone = Column(String(20))
+    first_name = Column(String(120))
+    last_name = Column(String(120))
+    email = Column(String(255), index=True)
+    phone = Column(String(50))
     essay = Column(Text)
-    status = Column(String(20), default="Pending")
+    uploaded_files = Column(Text)  # JSON list of file paths
+    status = Column(String(50), default="Pending")
     created_at = Column(DateTime, default=datetime.utcnow)
